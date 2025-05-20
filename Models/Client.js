@@ -1,4 +1,5 @@
-const mongoose=require('mongoose');
+const mongoose=require('mongoose'); //Importamos mongoose 
+//definimos estructura
 const ClientSchema=mongoose.Schema({
     name:{
         type:String,

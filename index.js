@@ -1,14 +1,14 @@
-const express = require('express');
-const app = express();
-const mongoose = require('mongoose');
-const cors = require('cors');
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
+const express = require('express'); //crea el servidor y las rutas
+const app = express(); // instancia principal de configuración
+const mongoose = require('mongoose'); // conecta node con mongo
+const cors = require('cors'); // permite peticiones desde diferentes dominios
+const morgan = require('morgan'); // muestra losg de las peticiones en la consola
+const bodyParser = require('body-parser'); // permite la lectura de los json
 
-// Middlewares
-app.use(cors());
-app.use(morgan('dev'));
-app.use(bodyParser.json());
+// Middlewares globales 
+app.use(cors()); //permite el acceso desde postman
+app.use(morgan('dev')); // imprime logs en la consola
+app.use(bodyParser.json()); //convierte del formato json a req.body
 
 // Rutas
 const clientRoute = require('./routes/client'); 

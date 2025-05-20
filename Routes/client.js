@@ -1,9 +1,9 @@
 // routes/post.js
-const express = require('express');
-const router = express.Router();
-const Client = require('../models/Client');
+const express = require('express'); //importamos express
+const router = express.Router(); //creamos el objeto router para definir las rutas específicas
+const Client = require('../models/Client'); //importamos el modelo client que representa la coleccion en la base de datos.
 
-// GET all clients
+// GET consulta todos los documentos, si hay exito trae la lista, si no, muestra el error 500
 router.get('/', async (req, res) => {
   try {
     const clients = await Client.find();
@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET single client by ID
+// GET buscar un solo cliente por id
 router.get('/:clientId', async (req, res) => {
   try {
     const client = await Client.findById(req.params.clientId);
@@ -26,7 +26,7 @@ router.get('/:clientId', async (req, res) => {
   }
 });
 
-//POST
+//POST crear registro de un nuevo cliente
 router.post('/', async (req, res) => {
     const client = new Client({
       name: req.body.name,
@@ -67,7 +67,7 @@ router.patch('/:clientId', async (req, res) => {
   }
 });
 
-
+//Delete borrar un registro de un cliente
   router.delete('/:clientId', async (req, res) => {
     try {
       const removedClient = await Client.findByIdAndDelete(req.params.clientId); //  corregido
@@ -81,4 +81,4 @@ router.patch('/:clientId', async (req, res) => {
       res.status(500).json({ message: err.message });
     }
   });
-module.exports = router;
+module.exports = router; //lo exportamos para poderlo importar donde lo necesitemos, por ejemplo en el index.js
